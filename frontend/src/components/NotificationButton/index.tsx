@@ -1,4 +1,4 @@
-import nofification from "../../assets/img/notification-icon.png";
+import nofification from "../../assets/img/notification-icon.svg";
 
 import "./styles.css";
 
