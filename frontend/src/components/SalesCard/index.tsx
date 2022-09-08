@@ -7,22 +7,30 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 
 function SalesCard() {
+  const oneYearAgo = new Date(new Date().setDate(new Date().getDate() - 365));
+  const today = new Date();
+
+  const [minDate, setMinDate] = useState(oneYearAgo);
+  const [maxDate, setMaxDate] = useState(today);
+
   return (
     <div className="dsmeta-card">
       <h2 className="dsmeta-sales-title">Vendas</h2>
       <div>
         <div className="dsmeta-form-control-container">
           <DatePicker
-            selected={new Date()}
-            onChange={(date: Date) => {}}
+            selected={minDate}
+            onChange={(date: Date) => setMinDate(date)}
             className="dsmeta-form-control"
             dateFormat="dd/MM/yyyy"
           />
         </div>
         <div className="dsmeta-form-control-container">
           <DatePicker
-            selected={new Date()}
-            onChange={(date: Date) => {}}
+            selected={maxDate}
+            onChange={(date: Date) => {
+              setMaxDate(date);
+            }}
             className="dsmeta-form-control"
             dateFormat="dd/MM/yyyy"
           />
