@@ -8,6 +8,7 @@
   width: 45px;
   background: rgba(255, 107, 114, 0.1);
   border: 1px solid #ff6b72;
+  color: #ff6b72;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -15,6 +16,9 @@
   cursor: pointer;
 }
 
-.dsmeta-red-btn img {
-  width: 19px;
+.dsmeta-red-btn.sent {
+  background: rgba(90, 199, 18, 0.1);
+  border: 1px solid #5ac712;
+  color: #5ac712;
+  cursor: unset;
 }
