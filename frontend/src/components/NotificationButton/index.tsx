@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 import { BASE_URL } from "../../utils/request";
@@ -16,9 +17,10 @@ type SendNotificationProps = {
 };
 
 function sendNotification({ saleId, setSent }: SendNotificationProps) {
-  axios
-    .get(`${BASE_URL}/sales/${saleId}/notification`)
-    .then(() => setSent("sent"));
+  axios.get(`${BASE_URL}/sales/${saleId}/notification`).then(() => {
+    toast.success("sms sent successfully!");
+    setSent("sent");
+  });
 }
 
 function NotificationButton({ saleId }: Props) {

@@ -13,6 +13,10 @@ import "./styles.css";
 function SalesCard() {
   const oneYearAgo = new Date(new Date().setDate(new Date().getDate() - 365));
   const today = new Date();
+  const moneyFormat = Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   const [minDate, setMinDate] = useState(oneYearAgo);
   const [maxDate, setMaxDate] = useState(today);
@@ -75,7 +79,7 @@ function SalesCard() {
                 <td>{sale.sellerName}</td>
                 <td className="show992">{sale.visited}</td>
                 <td className="show992">{sale.deals}</td>
-                <td>R$ {sale.amount.toFixed(2)}</td>
+                <td>{moneyFormat.format(sale.amount)}</td>
                 <td>
                   <div className="dsmeta-red-btn-container">
                     <NotificationButton saleId={sale.id} />
