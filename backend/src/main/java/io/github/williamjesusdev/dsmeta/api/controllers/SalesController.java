@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.williamjesusdev.dsmeta.domain.models.Sale;
 import io.github.williamjesusdev.dsmeta.domain.services.SalesService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("sales")
@@ -25,11 +25,16 @@ public class SalesController {
   }
 
   @GetMapping
-  public ResponseEntity<Page<Sale>> getAll(Pageable pageable) {
-    Page<Sale> sales = salesService.findAll(pageable);
-    if (sales.isEmpty()) {
+  public ResponseEntity<Page<Sale>> getAll(
+      @RequestParam(value = "minDate", defaultValue = "") String minDate,
+      @RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+      Pageable pageable) {
+
+    Page<Sale> sales = salesService.findSales(minDate, maxDate, pageable);
+
+    if (sales.isEmpty())
       return ResponseEntity.noContent().build();
-    }
+
     return ResponseEntity.ok(sales);
   }
 
